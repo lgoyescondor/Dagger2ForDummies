@@ -12,7 +12,7 @@ import javax.inject.Singleton
  * Dagger will look for variables, methods and possible instance
  * providers
  *
- * We will create a mode for every feature
+ * We will create a module for every feature
  *
  * Methods that return something should also be annotated with
  * @Provides decorator
