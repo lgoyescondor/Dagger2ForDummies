@@ -3,6 +3,8 @@ package io.condorlabs.lgoyes.daggerexample
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import dagger.Component
+import dagger.Module
+import dagger.Provides
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
@@ -18,13 +20,21 @@ class MainActivity : AppCompatActivity() {
 
         tvMainHelloworld?.text = info.text
     }
+
+
 }
 
-class Info  @Inject constructor(){
-    val text = "Hello Dagger 2"
-}
+class Info (val text : String)
 
-@Component
+@Component(modules = [ExampleModule::class])
 interface ExampleComponent {
     fun inject( app : MainActivity )
+}
+
+@Module
+class ExampleModule {
+    @Provides
+    fun providesInfo() : Info {
+        return Info("Love Dagger 2")
+    }
 }
